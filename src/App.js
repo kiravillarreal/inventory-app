@@ -34,6 +34,7 @@ class App extends Component {
     this._setFireBaseDataEditTable = this._setFireBaseDataEditTable.bind(this); //Sets the UUID we are going to modify
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancelEdit = this.handleCancelEdit.bind(this);
   }
 
   //Loading the data from firebase
@@ -123,6 +124,7 @@ editView = (
           <input type="text" value={this.state.editFields.quantity} onChange={this._handleFirebaseFormChange}  name="quantity" />
           <input type="text" className="hideinput" value={this.state.editFields.uuid} onChange={this._handleFirebaseFormChange} name="uuid" />
           <button type="submit" type="submit" >Submit</button>
+          <button onClick={this.handleCancelEdit}>Cancel</button>
         </form>
       </div>
     );
@@ -160,6 +162,13 @@ editView = (
 
   }
 
+ handleCancelEdit(event){
+   event.preventDefault();
+   this.setState({
+		editMode:false
+});
+
+ }
 
   onSubmit(event) {
     event.preventDefault();
